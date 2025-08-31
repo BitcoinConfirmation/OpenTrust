@@ -1,4 +1,4 @@
-# Government Caller Registry
+# OpenTrust
 
 A blockchain-based system for registering and verifying government agency phone numbers.
 
@@ -174,3 +174,4 @@ Refer to `api/MANUAL_CLI_COMMANDS.md` for individual PowerShell and curl command
 ## License
 
 MIT
+
