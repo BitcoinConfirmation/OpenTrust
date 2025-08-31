@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600">
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+  </defs>
+  <rect width="600" height="600" fill="#f0ebe5" style="opacity: 0"/>
+  <g fill="#1456B0" filter="url(#glow)">
+    <path d="M300 100 L400 160 L400 280 L300 340 L200 280 L200 160 Z" stroke="#1456B0" stroke-width="12" fill="none"/>
+    <path d="M150 340 L250 400 L250 520 L150 580 L50 520 L50 400 Z" stroke="#1456B0" stroke-width="12" fill="none"/>
+    <path d="M450 340 L550 400 L550 520 L450 580 L350 520 L350 400 Z" stroke="#1456B0" stroke-width="12" fill="none"/>
+    
+    <!-- Chain links -->
+    <path d="M270 270 Q230 270 230 310 Q230 350 270 350 Q310 350 310 310 Q310 270 270 270 Z M270 290 Q245 290 245 310 Q245 330 270 330 Q295 330 295 310 Q295 290 270 290 Z" stroke="#1456B0" stroke-width="12" fill="none"/>
+    
+    <path d="M120 450 Q80 450 80 490 Q80 530 120 530 Q160 530 160 490 Q160 450 120 450 Z M120 470 Q95 470 95 490 Q95 510 120 510 Q145 510 145 490 Q145 470 120 470 Z" stroke="#1456B0" stroke-width="12" fill="none"/>
+    
+    <path d="M480 450 Q440 450 440 490 Q440 530 480 530 Q520 530 520 490 Q520 450 480 450 Z M480 470 Q455 470 455 490 Q455 510 480 510 Q505 510 505 490 Q505 470 480 470 Z" stroke="#1456B0" stroke-width="12" fill="none"/>
+    
+    <path d="M300 460 Q260 460 260 500 Q260 540 300 540 Q340 540 340 500 Q340 460 300 460 Z M300 480 Q275 480 275 500 Q275 520 300 520 Q325 520 325 500 Q325 480 300 480 Z" stroke="#1456B0" stroke-width="12" fill="none"/>
+    
+    <!-- Connection lines -->
+    <path d="M260 320 L170 450" stroke="#1456B0" stroke-width="12" fill="none"/>
+    <path d="M340 320 L430 450" stroke="#1456B0" stroke-width="12" fill="none"/>
+    <path d="M200 500 L260 500" stroke="#1456B0" stroke-width="12" fill="none"/>
+    <path d="M340 500 L400 500" stroke="#1456B0" stroke-width="12" fill="none"/>
+  </g>
+</svg>

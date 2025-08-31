@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Caller Registry</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Government Caller Registry</h1>
+        <div class="section">
+            <h2>Register Phone Number</h2>
+            <input type="text" id="registerAgencyAddress" placeholder="Agency Address">
+            <input type="text" id="registerPhoneNumber" placeholder="Phone Number">
+            <input type="text" id="registerAgencyName" placeholder="Agency Name">
+            <button id="registerButton">Register</button>
+        </div>
+        <div class="section">
+            <h2>Revoke Phone Number</h2>
+            <input type="text" id="revokeAgencyAddress" placeholder="Agency Address">
+            <button id="revokeButton">Revoke</button>
+        </div>
+        <div class="section">
+            <h2>Verify Phone Number</h2>
+            <input type="text" id="verifyAgencyAddress" placeholder="Agency Address">
+            <input type="text" id="verifyPhoneNumber" placeholder="Phone Number">
+            <button id="verifyButton">Verify</button>
+        </div>
+        <div id="status"></div>
+    </div>
+    <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

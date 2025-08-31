@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenTrust - Verify</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>OpenTrust</h1>
+        </header>
+
+        <div class="section verify-section">
+            <div class="verify-intro">
+                <h2>Verify Phone Number</h2>
+                <p>Enter a phone number to verify if it belongs to a verified official organization.</p>
+            </div>
+            <div class="form-group">
+                <label for="verifyPhoneNumber">Phone Number</label>
+                <input type="text" id="verifyPhoneNumber" placeholder="+1-202-555-0101" list="phone-suggestions">
+                <datalist id="phone-suggestions"></datalist>
+            </div>
+            <button id="verifyButton">Verify Phone Number</button>
+        </div>
+        
+        <div id="result" class="result-container hidden">
+            <div class="result-icon">
+                <div class="icon"></div>
+            </div>
+            <div class="result-details">
+                <h3>Verification Result</h3>
+                <p id="result-message"></p>
+                <div id="agency-details" class="hidden">
+                    <p><strong>Agency:</strong> <span id="agency-name"></span></p>
+                    <p><strong>Phone:</strong> <span id="agency-phone"></span></p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="status">DEMO MODE - Using simulated verification</div>
+        
+        <div class="blockchain-info">
+            <p>This verification tool is connected to a secure blockchain-based registry of government phone numbers.</p>
+            <p class="blockchain-address">Contract: <span class="address">0xa513E6E4b8f2a923D98304ec87F64353C4D5C853</span></p>
+        </div>
+        
+        <div class="debug-section">
+            <button id="debug-toggle" class="debug-button">Show Debug Information</button>
+            <div id="debug-info" class="debug-info hidden">
+                <h3>Blockchain Connection Details</h3>
+                <p id="debug-provider">Provider Status: Demo Mode</p>
+                <p id="debug-network">Network: Demo</p>
+                <p id="debug-contract">Contract: Simulated</p>
+                <p id="debug-account">Connected Account: None</p>
+                <p id="debug-error">Last Error: None</p>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 OpenTrust - Secure Verification System</p>
+            <p><a href="launcher.html">Back to launcher</a></p>
+        </div>
+    </div>
+    <script src="verify-demo.js"></script>
+</body>
+</html>

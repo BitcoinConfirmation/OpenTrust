@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrueCaller - OpenTrust Verification</title>
+    <link rel="stylesheet" href="truecaller.css">
+    <link rel="stylesheet" href="verification.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
+    <script>
+        // Fallback for ethers.js if CDN fails
+        if (typeof ethers === 'undefined') {
+            document.write('<script src="https://unpkg.com/ethers@5.7.2/dist/ethers.umd.min.js"><\/script>');
+        }
+    </script>
+</head>
+<body class="truecaller-body">
+    <!-- Phone Mockup Container -->
+    <div class="phone-mockup">
+        <!-- Phone Status Bar -->
+        <div class="status-bar">
+            <div class="status-left">
+                <span class="time" id="currentTime">9:41</span>
+            </div>
+            <div class="status-right">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <span class="battery">
+                    <i class="fas fa-battery-three-quarters"></i>
+                    85%
+                </span>
+            </div>
+        </div>
+
+        <!-- Incoming Call Screen -->
+        <div class="call-screen" id="callScreen">
+            <!-- Verification status banner -->
+            <div class="verification-banner verified-banner" id="verifiedBanner">
+                <i class="fas fa-shield-alt"></i> VERIFIED CALL
+            </div>
+            <div class="verification-banner unverified-banner" id="unverifiedBanner">
+                <i class="fas fa-exclamation-triangle"></i> UNVERIFIED CALL
+            </div>
+            <!-- Call Header -->
+            <div class="call-header">
+                <div class="call-status">
+                    <span class="status-text">Incoming call</span>
+                    <div class="call-duration" id="callDuration">00:00</div>
+                </div>
+                <div class="blockchain-logo-mini">
+                    <img src="images/blockchain-logo.svg" alt="Blockchain Verification">
+                </div>
+                <div class="call-actions-top">
+                    <button class="top-action" id="muteBtn" title="Mute">
+                        <i class="fas fa-microphone-slash"></i>
+                    </button>
+                    <button class="top-action" id="speakerBtn" title="Speaker">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Caller Information -->
+            <div class="caller-section">
+                <!-- Caller Avatar with Ripple Effect -->
+                <div class="caller-avatar-container">
+                    <div class="avatar-ripple" id="avatarRipple"></div>
+                    <div class="caller-avatar" id="callerAvatar">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='40' fill='%23e5e7eb'/%3E%3Ctext x='50' y='65' font-family='Arial' font-size='40' text-anchor='middle' fill='%23374151'%3E�%3C/text%3E%3C/svg%3E" alt="Caller" id="avatarImage">
+                        <div class="verification-badge" id="verificationBadge">
+                            <img src="images/blockchain-logo.svg" class="verification-icon" alt="Blockchain Verified">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Caller Details -->
+                <div class="caller-info">
+                    <div class="caller-name" id="callerDisplayName">Unknown Caller</div>
+                    <div class="caller-number" id="callerPhoneNumber">+1 (555) 123-4567</div>
+                    
+                    <!-- Verification Card -->
+                    <div class="truecaller-card" id="truecallerCard">
+                        <div class="tc-verification" id="tcVerification">
+                            <div class="verification-status" id="verificationText">
+                                <img src="images/blockchain-logo.svg" class="verification-status-icon" alt="Blockchain Verified">
+                                <span>OpenTrust Verified</span>
+                            </div>
+                            <div class="verification-details" id="verificationDetails">
+                                <i class="fas fa-building"></i>
+                                <span>Federal Bureau of Investigation</span>
+                            </div>
+                            <div class="spam-rating" id="spamRating">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call Action Buttons -->
+            <div class="call-actions">
+                <button class="call-button decline" id="declineCall">
+                    <div class="button-inner">
+                        <i class="fas fa-phone" style="transform: rotate(135deg);"></i>
+                    </div>
+                </button>
+                
+                <button class="call-button answer" id="answerCall">
+                    <div class="button-inner">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Slide to Answer (Alternative) -->
+            <div class="slide-container" id="slideContainer" style="display: none;">
+                <div class="slide-track">
+                    <div class="slide-text">Slide to answer</div>
+                    <div class="slide-button" id="slideButton">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Demo Controls Panel -->
+        <div class="demo-panel" id="demoPanel">
+            <div class="panel-header">
+                <h3>Call Simulation</h3>
+                <button class="toggle-panel" id="togglePanel">
+                    <i class="fas fa-chevron-up"></i>
+                </button>
+            </div>
+            
+            <div class="panel-content">
+                <div class="input-group">
+                    <label for="phoneSelect">Test Phone Number:</label>
+                    <select id="phoneSelect" class="phone-select">
+                        <option value="+1-777-TEST-555">+1 (777) TEST-555 - Always Verified</option>
+                        <option value="+1-202-555-0101">+1 (202) 555-0101 - FBI</option>
+                        <option value="+1-202-555-0102">+1 (202) 555-0102 - DHS</option>
+                        <option value="+1-202-555-0103">+1 (202) 555-0103 - IRS</option>
+                        <option value="+1-555-123-4567">+1 (555) 123-4567 - Unknown</option>
+                        <option value="+1-800-SCAMMER">+1 (800) SCAMMER - Suspicious</option>
+                        <option value="+1-900-TELEMARKETER">+1 (900) TELEMARKETER - Spam</option>
+                    </select>
+                </div>
+                
+                <button class="simulate-call-btn" id="simulateCall">
+                    <i class="fas fa-phone-alt"></i>
+                    Next Call
+                </button>
+                
+                <div class="status-indicators">
+                    <div class="status-item">
+                        <div class="status-dot" id="blockchainDot"></div>
+                        <span id="blockchainStatusText">Blockchain: Connecting...</span>
+                    </div>
+                    <div class="status-item">
+                        <div class="status-dot" id="verificationDot"></div>
+                        <span id="lastVerificationText">Last check: None</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="bottom-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-cog"></i>
+                <span>Admin</span>
+            </a>
+            <a href="verify.html" class="nav-item">
+                <i class="fas fa-search"></i>
+                <span>Verify</span>
+            </a>
+            <a href="truecaller.html" class="nav-item active">
+                <i class="fas fa-phone"></i>
+                <span>TrueCaller</span>
+            </a>
+            <a href="launcher.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+        </div>
+    </div>
+
+    <script src="truecaller.js"></script>
+</body>
+</html>

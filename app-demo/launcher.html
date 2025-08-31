@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenTrust - Launcher</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #111827;
+            color: #e5e7eb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: #1e293b;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .logo {
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(20, 86, 176, 0.7));
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        h1 {
+            color: #60a5fa;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .button {
+            background-color: #2563eb;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .button:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+        
+        .button.secondary {
+            background-color: #4b5563;
+        }
+        
+        .button.secondary:hover {
+            background-color: #374151;
+        }
+        
+        .status {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #374151;
+            font-family: monospace;
+        }
+        
+        .status pre {
+            margin: 0;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="images/blockchain-logo.svg" alt="Blockchain Verification Logo" class="logo">
+        <h1>OpenTrust Demo</h1>
+        
+        <p>This launcher will help you navigate the different parts of the demo application.</p>
+        
+        <div class="buttons">
+            <a href="verify.html" class="button">📋 Phone Number Verification</a>
+            <a href="index.html" class="button secondary">⚙️ Admin Dashboard</a>
+            <a href="truecaller.html" class="button">📞 True Caller Interface</a>
+        </div>
+        
+        <div class="status">
+            <h3>System Status</h3>
+            <pre>Contract Address: 0xA51c1fc2f0D1a1b8494Ed1FE312d7C3a78Ed91C0
+Test Phone Numbers:
+- +1-202-555-0101 (Federal Bureau of Investigation)
+- +1-202-555-0102 (Department of Homeland Security)
+- +1-202-555-0103 (Internal Revenue Service)
+
+New Features:
+- True Caller style call verification
+- Real-time blockchain identity checking
+- Automatic scam detection</pre>
+        </div>
+    </div>
+</body>
+</html>
